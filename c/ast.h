@@ -18,6 +18,7 @@ typedef struct Node {
 
 extern Node* parse_ast(const char* source);
 extern void free_ast(Node* node);
+extern char last_error_msg[];
 
 typedef struct Var {
     NodeType type;

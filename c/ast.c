@@ -2,14 +2,20 @@
 #include "parser.h"
 #include "lexer.h"
 
+#define LAST_ERROR_MSG_BUFFER_SIZE 512
+
+char last_error_msg[LAST_ERROR_MSG_BUFFER_SIZE];
+
 void yyerror(yyscan_t scanner, Node** node, const char* msg) {
-    //fprintf(stderr,"Error: %s\n", msg);
+    snprintf(last_error_msg, LAST_ERROR_MSG_BUFFER_SIZE,"%s", msg);
 }
  
 Node* parse_ast(const char* source) {
     Node* node;
     yyscan_t scanner;
     YY_BUFFER_STATE state;
+
+	last_error_msg[0]  = 0;
  
     if (yylex_init(&scanner)) {
         // couldn't initialize

@@ -42,7 +42,7 @@ static VALUE Bool_parse(VALUE klass, VALUE r_expr) {
         free_ast(ast);
         return result;
     } else {
-        rb_raise(rb_eParseError, "Couldn't parse boolean expression");
+        rb_raise(rb_eParseError, "%s", last_error_msg);
     }
 }
 
